@@ -16,18 +16,36 @@ public class RankingService {
 
         for (Place p : places) {
 
-            double score =
-                    p.getWalkability() * weights.getWalkability() +
-                            p.getTransit() * weights.getTransit() +
-                            p.getSafety() * weights.getSafety() +
-                            p.getCost() * weights.getCost() +
-                            p.getAmenities() * weights.getAmenities() +
-                            p.getAirportAccess() * weights.getAirportAccess();
+            double walkabilityScore = p.getWalkability() * weights.getWalkability();
+            double transitScore = p.getTransit() * weights.getTransit();
+            double safetyScore = p.getSafety() * weights.getSafety();
+            double costScore = p.getCost() * weights.getCost();
+            double amenitiesScore = p.getAmenities() * weights.getAmenities();
+            double airportScore = p.getAirportAccess() * weights.getAirportAccess();
 
-            results.add(new PlaceScore(p, score));
+            double total =
+                    walkabilityScore +
+                            transitScore +
+                            safetyScore +
+                            costScore +
+                            amenitiesScore +
+                            airportScore;
+
+            results.add(
+                    new PlaceScore(
+                            p,
+                            walkabilityScore,
+                            transitScore,
+                            safetyScore,
+                            costScore,
+                            amenitiesScore,
+                            airportScore,
+                            total
+                    )
+            );
         }
 
-        results.sort(Comparator.comparingDouble(PlaceScore::getScore).reversed());
+        results.sort(Comparator.comparingDouble(PlaceScore::getTotalScore).reversed());
 
         return results;
     }

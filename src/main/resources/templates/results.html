@@ -1,40 +1,35 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Results - Ideal Location Finder</title>
-    <meta charset="UTF-8" />
-</head>
-<body>
-<h1>Ranked Results</h1>
-
-<p><a th:href="@{/}">← adjust weights</a></p>
-
-<h3>Normalized weights used</h3>
-<ul>
-    <li>Walkability: <span th:text="${weights.walkability}"></span></li>
-    <li>Transit: <span th:text="${weights.transit}"></span></li>
-    <li>Safety: <span th:text="${weights.safety}"></span></li>
-    <li>Cost: <span th:text="${weights.cost}"></span></li>
-    <li>Amenities: <span th:text="${weights.amenities}"></span></li>
-    <li>Airport: <span th:text="${weights.airportAccess}"></span></li>
-</ul>
-
 <table border="1" cellpadding="6">
     <thead>
     <tr>
         <th>Rank</th>
         <th>Place</th>
-        <th>Total score</th>
+        <th>Walkability</th>
+        <th>Transit</th>
+        <th>Safety</th>
+        <th>Cost</th>
+        <th>Amenities</th>
+        <th>Airport</th>
+        <th>Total</th>
     </tr>
     </thead>
+
     <tbody>
+
     <tr th:each="ps, iter : ${ranked}">
         <td th:text="${iter.index + 1}"></td>
+
         <td th:text="${ps.place.name}"></td>
-        <td th:text="${ps.score}"></td>
+
+        <td th:text="${ps.walkabilityScore}"></td>
+        <td th:text="${ps.transitScore}"></td>
+        <td th:text="${ps.safetyScore}"></td>
+        <td th:text="${ps.costScore}"></td>
+        <td th:text="${ps.amenitiesScore}"></td>
+        <td th:text="${ps.airportScore}"></td>
+
+        <td th:text="${ps.totalScore}"></td>
+
     </tr>
+
     </tbody>
 </table>
-
-</body>
-</html>
