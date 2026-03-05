@@ -2,10 +2,13 @@ package com.francisco.ideallocationfinder.service;
 
 import com.francisco.ideallocationfinder.domain.*;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Service
 public class RankingService {
     public List<PlaceScore> rank(List<Place> places, Weights weights) {
 
