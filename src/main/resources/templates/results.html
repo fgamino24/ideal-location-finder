@@ -33,3 +33,12 @@
 
     </tbody>
 </table>
+<h3>Dealbreakers used (minimums)</h3>
+<ul>
+    <li>Walkability ≥ <span th:text="${constraints.minWalkability}"></span></li>
+    <li>Transit ≥ <span th:text="${constraints.minTransit}"></span></li>
+    <li>Safety ≥ <span th:text="${constraints.minSafety}"></span></li>
+    <li>Cost ≥ <span th:text="${constraints.minCost}"></span></li>
+    <li>Amenities ≥ <span th:text="${constraints.minAmenities}"></span></li>
+    <li>Airport ≥ <span th:text="${constraints.minAirportAccess}"></span></li>
+</ul>

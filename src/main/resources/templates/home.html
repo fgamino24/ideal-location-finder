@@ -33,9 +33,45 @@
         <label>Airport access</label>
         <input type="number" step="0.01" th:field="*{airportAccess}" />
     </div>
+    <hr>
+
+    <h2>Dealbreakers (minimum acceptable scores)</h2>
+
+    <p>If a location scores below one of these values it will be excluded.</p>
+
+    <div>
+        <label>Minimum Walkability</label>
+        <input type="number" name="minWalkability" th:value="${constraints.minWalkability}">
+    </div>
+
+    <div>
+        <label>Minimum Transit</label>
+        <input type="number" name="minTransit" th:value="${constraints.minTransit}">
+    </div>
+
+    <div>
+        <label>Minimum Safety</label>
+        <input type="number" name="minSafety" th:value="${constraints.minSafety}">
+    </div>
+
+    <div>
+        <label>Minimum Cost</label>
+        <input type="number" name="minCost" th:value="${constraints.minCost}">
+    </div>
+
+    <div>
+        <label>Minimum Amenities</label>
+        <input type="number" name="minAmenities" th:value="${constraints.minAmenities}">
+    </div>
+
+    <div>
+        <label>Minimum Airport Access</label>
+        <input type="number" name="minAirportAccess" th:value="${constraints.minAirportAccess}">
+    </div>
 
     <button type="submit">Rank places</button>
 </form>
+
 
 </body>
 </html>

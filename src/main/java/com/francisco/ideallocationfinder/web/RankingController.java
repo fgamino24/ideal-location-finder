@@ -8,6 +8,7 @@ import com.francisco.ideallocationfinder.service.RankingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.francisco.ideallocationfinder.domain.Constraints;
 
 import java.util.List;
 
@@ -31,11 +32,23 @@ public class RankingController {
         weights.setAirportAccess(0.10);
 
         model.addAttribute("weights", weights);
+
+        Constraints constraints = new Constraints();
+        constraints.setMinWalkability(0);
+        constraints.setMinTransit(0);
+        constraints.setMinSafety(0);
+        constraints.setMinCost(0);
+        constraints.setMinAmenities(0);
+        constraints.setMinAirportAccess(0);
+
+        model.addAttribute("constraints", constraints);
         return "home";
     }
 
     @PostMapping("/rank")
-    public String rank(@ModelAttribute Weights weights, Model model) {
+    public String rank(@ModelAttribute("weights") Weights weights,
+                       @ModelAttribute("constraints") Constraints constraints,
+                       Model model) {
         // normalize weights so they sum to 1 (so users can type anything)
         normalize(weights);
 
@@ -44,6 +57,7 @@ public class RankingController {
 
         model.addAttribute("weights", weights);
         model.addAttribute("ranked", ranked);
+        model.addAttribute("constraints", constraints);
         return "results";
     }
 
