@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Ideal Location Finder</title>
+    <meta charset="UTF-8" />
 </head>
-
 <body>
-
 <h1>Ideal Location Finder</h1>
+<p>Set your priorities (any numbers). We’ll normalize them and rank places.</p>
 
-<p>This app will rank places to live based on your priorities.</p>
+<form th:action="@{/rank}" th:object="${weights}" method="post">
+    <div>
+        <label>Walkability</label>
+        <input type="number" step="0.01" th:field="*{walkability}" />
+    </div>
+    <div>
+        <label>Transit</label>
+        <input type="number" step="0.01" th:field="*{transit}" />
+    </div>
+    <div>
+        <label>Safety</label>
+        <input type="number" step="0.01" th:field="*{safety}" />
+    </div>
+    <div>
+        <label>Cost</label>
+        <input type="number" step="0.01" th:field="*{cost}" />
+    </div>
+    <div>
+        <label>Amenities</label>
+        <input type="number" step="0.01" th:field="*{amenities}" />
+    </div>
+    <div>
+        <label>Airport access</label>
+        <input type="number" step="0.01" th:field="*{airportAccess}" />
+    </div>
+
+    <button type="submit">Rank places</button>
+</form>
 
 </body>
 </html>
